@@ -36,17 +36,17 @@ app.post("/api/students", (req, res) => {
   try {
     if (index === -1 && name !== "") {
       students.push(name);
-      rollbar.info(`New student ${name} has been added`);
+      rollbar.info(`New student ${name} has been added!!`);
       res.status(200).send(students);
     } else if (name === "") {
-      rollbar.error("Empty string was entered for new student");
+      rollbar.error("Empty string was entered for new student!!");
       res.status(400).send("You must enter a name.");
     } else {
-      rollbar.error("Duplicate student name was entered");
+      rollbar.error("Duplicate student name was entered!!");
       res.status(400).send("That student already exists.");
     }
   } catch (err) {
-    rollbar.critical('Failed to add student!')
+    rollbar.critical('Failed to add student!!!!')
     console.log(err);
   }
 });
