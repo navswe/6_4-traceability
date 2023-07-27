@@ -39,7 +39,7 @@ app.post("/api/students", (req, res) => {
       rollbar.info(`New student ${name} has been added!!`);
       res.status(200).send(students);
     } else if (name === "") {
-      rollbar.error("Empty string was entered for new student!!");
+      rollbar.warning("Empty string was entered for new student!!");
       res.status(400).send("You must enter a name.");
     } else {
       rollbar.error("Duplicate student name was entered!!");
