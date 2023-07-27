@@ -41,12 +41,15 @@ app.post("/api/students", (req, res) => {
     } else if (name === "") {
       rollbar.warning("Empty string was entered for new student!!");
       res.status(400).send("You must enter a name.");
+    } else if (name.includes("$")) {
+      rollbar.critical("Not a name since it has $");
+      res.status(400).send("Name can only contains letters.");
     } else {
       rollbar.error("Duplicate student name was entered!!");
       res.status(400).send("That student already exists.");
     }
   } catch (err) {
-    rollbar.critical('Failed to add student!!!!')
+    rollbar.critical("Failed to add student!!!!");
     console.log(err);
   }
 });
